@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using RepositoryLayer.Entity;
 
@@ -13,14 +9,17 @@ namespace RepositoryLayer.Context
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options) { }
 
         public virtual DbSet<UserEntity> Users { get; set; }
-        public virtual DbSet<AddressBookEntity> AddressBookEntries { get; set; }
+        public virtual DbSet<AddressBookEntity> AddressBooks { get; set; }  // Fixed Naming
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<AddressBookEntity>()
-                .HasOne(u => u.User)
-                .WithMany(a => a.AddressBookEntries)
-                .HasForeignKey(a => a.UserId);
-        }
+                .HasOne(a => a.User)
+                .WithMany(u => u.AddressBookEntries)
+                .HasForeignKey(a => a.UserId)
+                .OnDelete(DeleteBehavior.Cascade);  // Ensures cascading delete
 
+            base.OnModelCreating(modelBuilder);
+        }
     }
 }

@@ -1,0 +1,165 @@
+[
+  {
+    "ContainingType": "AddressBookApp.Controllers.AddressBookController",
+    "Method": "GetAllABs",
+    "RelativePath": "AddressBook/api",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AddressBookApp.Controllers.AddressBookController",
+    "Method": "AddAB",
+    "RelativePath": "AddressBook/api",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "addressBookCreateModel",
+        "Type": "ModelLayer.Models.AddressBookCreateModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "ModelLayer.Models.ResponseModel\u00601[[RepositoryLayer.Entity.AddressBookEntity, RepositoryLayer, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "AddressBookApp.Controllers.AddressBookController",
+    "Method": "GetABById",
+    "RelativePath": "AddressBook/api/{id}",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AddressBookApp.Controllers.AddressBookController",
+    "Method": "UpdateContact",
+    "RelativePath": "AddressBook/api/{id}",
+    "HttpMethod": "PUT",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      },
+      {
+        "Name": "addressBookUpdateModel",
+        "Type": "ModelLayer.Models.AddressBookUpdateModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "AddressBookApp.Controllers.AddressBookController",
+    "Method": "DeleteContact",
+    "RelativePath": "AddressBook/api/{id}",
+    "HttpMethod": "DELETE",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "id",
+        "Type": "System.Int32",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserRegistration.Controllers.UserRegistrationController",
+    "Method": "ForgotPassword",
+    "RelativePath": "UserRegistration/forgot-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "forgotPasswordDTO",
+        "Type": "ModelLayer.DTO.ForgotPasswordModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserRegistration.Controllers.UserRegistrationController",
+    "Method": "GetAllUsers",
+    "RelativePath": "UserRegistration/get-all-users",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserRegistration.Controllers.UserRegistrationController",
+    "Method": "LoginUser",
+    "RelativePath": "UserRegistration/login",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "loginDTO",
+        "Type": "ModelLayer.DTO.LoginModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserRegistration.Controllers.UserRegistrationController",
+    "Method": "RegisterUser",
+    "RelativePath": "UserRegistration/register",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "registrationDTO",
+        "Type": "ModelLayer.DTO.RegistrationModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "UserRegistration.Controllers.UserRegistrationController",
+    "Method": "ResetPassword",
+    "RelativePath": "UserRegistration/reset-password",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "resetPasswordDTO",
+        "Type": "ModelLayer.DTO.ResetPasswordModel",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

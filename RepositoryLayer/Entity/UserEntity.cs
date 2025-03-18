@@ -1,24 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace RepositoryLayer.Entity
 {
     public class UserEntity
     {
+        [Key]
         public int Id { get; set; }
 
-        [Required, EmailAddress]
+        [Required, MaxLength(100)]
+        public string Username { get; set; }
+
+        [Required, EmailAddress, MaxLength(150)]
         public string Email { get; set; }
 
-        [Required]
+        [Required, MaxLength(255)]
         public string PasswordHash { get; set; }
 
-        public string Role { get; set; } = "User";
+        [Required, MaxLength(50)]
+        public string Role { get; set; } = "User";  // Default Role
 
-        public ICollection<AddressBookEntity>? AddressBookEntries { get; set; }
+        // Navigation Property
+        public List<AddressBookEntity> AddressBookEntries { get; set; } = new();
+
+        // Timestamps
+        public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
+        public DateTime? UpdatedAt { get; set; }
+
+        public string? ResetToken { get; set; }
+        public DateTime? ResetTokenExpiry { get; set; }
     }
 }

@@ -5,8 +5,13 @@ C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Deb
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\Middleware.AssemblyInfoInputs.cache
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\Middleware.AssemblyInfo.cs
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\Middleware.csproj.CoreCompileInputs.cache
-C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\Middleware.sourcelink.json
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\Middleware.dll
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\refint\Middleware.dll
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\Middleware.pdb
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\ref\Middleware.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\Middleware.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\bin\Debug\net6.0\ModelLayer.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\bin\Debug\net6.0\RepositoryLayer.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\bin\Debug\net6.0\RepositoryLayer.pdb
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\bin\Debug\net6.0\ModelLayer.pdb
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\Middleware.csproj.Up2Date
