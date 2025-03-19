@@ -8,7 +8,7 @@ namespace BusinessLayer.Interface
 {
     public interface IEmailServiceBL
     {
-        public void SendEmail(string toEmail, string subject, string body);
+        public Task SendEmailAsync(string toEmail, string subject, string body);
 
     }
 }

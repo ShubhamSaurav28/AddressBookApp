@@ -5,6 +5,7 @@ using BusinessLayer.Interface;
 using Middleware;
 using ModelLayer.DTO;
 using ModelLayer.Models;
+using Org.BouncyCastle.Asn1.Ocsp;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Service;
@@ -17,16 +18,19 @@ namespace BusinessLayer.Service
         private readonly IUserRegistrationRL _userRegistrationRL;
         private readonly JwtMiddleware _jwtMiddleware;
         private readonly IEmailServiceBL _emailServiceBL;
+        private readonly RabbitMQProducer _rabbitMQProducer;
+
 
         private const int SaltSize = 16; // 128-bit
         private const int HashSize = 32; // 256-bit
         private const int Iterations = 10000; // Recommended for PBKDF2
 
-        public UserRegistrationBL(IUserRegistrationRL userRegistrationRL, JwtMiddleware jwtMiddleware, IEmailServiceBL emailServiceBL)
+        public UserRegistrationBL(IUserRegistrationRL userRegistrationRL, JwtMiddleware jwtMiddleware, IEmailServiceBL emailServiceBL,RabbitMQProducer rabbitMQProducer)
         {
             _userRegistrationRL = userRegistrationRL;
             _jwtMiddleware = jwtMiddleware;
             _emailServiceBL = emailServiceBL;
+            _rabbitMQProducer = rabbitMQProducer;
         }
 
         public bool RegisterUser(RegistrationDTO registrationDTO)
@@ -68,9 +72,17 @@ namespace BusinessLayer.Service
             }
 
             string resetLink = $"https://localhost:7238/reset-password?token={token}";
-            string emailBody = $"<h3>Password Reset</h3><p>Click <a href='{resetLink}'>here</a> to reset your password.</p><p>{resetLink}</p>";
+            var message = new
+            {
+                To = forgotPasswordDTO.Email,
+                Subject = "Reset Your Password",
+                Body = $"<h3>Password Reset</h3><p>Click <a href='{resetLink}'>here</a> to reset your password.</p><p>{resetLink}</p>"
+            };
 
-            _emailServiceBL.SendEmail(forgotPasswordDTO.Email, "Password Reset Request", emailBody);
+            _rabbitMQProducer.PublishMessage(message);
+
+
+            //_emailServiceBL.SendEmail(forgotPasswordDTO.Email, "Password Reset Request", emailBody);
 
             return true;
         }

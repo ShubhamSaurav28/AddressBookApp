@@ -12,7 +12,7 @@ namespace AddressBookApp.Controllers
 {
     [ApiController]
     [Route("[controller]/api")]
-    //[Authorize]
+    [Authorize]
     public class AddressBookController : ControllerBase
     {
         private readonly IAddressBookBL _addressBookBL;

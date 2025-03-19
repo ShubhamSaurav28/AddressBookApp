@@ -48,7 +48,11 @@ builder.Services.AddScoped<IAddressBookBL, AddressBookBL>();
 builder.Services.AddScoped<IUserRegistrationBL, UserRegistrationBL>();
 builder.Services.AddScoped<IUserRegistrationRL, UserRegistrationRL>();
 builder.Services.AddScoped<JwtMiddleware>();
-builder.Services.AddScoped<IEmailServiceBL, EmailServiceBL>();
+builder.Services.AddSingleton<IEmailServiceBL, EmailServiceBL>();
+builder.Services.AddSingleton<RabbitMQProducer>();
+builder.Services.AddSingleton<RabbitMQConsumer>();
+
+
 
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
@@ -136,6 +140,9 @@ app.UseHttpsRedirection();
 
 // Enable CORS policy
 app.UseCors("AllowAll");
+
+var rabbitConsumer = app.Services.GetRequiredService<RabbitMQConsumer>();
+Task.Run(() => rabbitConsumer.StartListening());
 
 // 🔹 Authentication & Authorization Middleware (If needed)
 app.UseAuthentication();

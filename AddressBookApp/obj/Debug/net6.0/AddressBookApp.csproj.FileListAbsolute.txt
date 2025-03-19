@@ -101,3 +101,6 @@ C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin\Debug\net6.0\FluentValidation.dll
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\obj\Debug\net6.0\AddressBookApp.sourcelink.json
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin\Debug\net6.0\RabbitMQ.Client.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin\Debug\net6.0\System.Threading.Channels.dll

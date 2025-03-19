@@ -20,8 +20,9 @@ namespace BusinessLayer.Service
             _configuration = configuration;
         }
 
-        public void SendEmail(string toEmail, string subject, string body)
+        public async Task SendEmailAsync(string toEmail, string subject, string body)
         {
+            Console.WriteLine("This is the EmailService Body"+body);
             var message = new MimeMessage();
             message.From.Add(new MailboxAddress("UserRegistration", _configuration["SmtpSettings:Username"]));
             message.To.Add(new MailboxAddress("", toEmail));
@@ -31,20 +32,21 @@ namespace BusinessLayer.Service
 
             using (var client = new MailKit.Net.Smtp.SmtpClient())
             {
-                client.Connect(
+                await client.ConnectAsync(
                     _configuration["SmtpSettings:Host"],
                     int.Parse(_configuration["SmtpSettings:Port"]),
                     bool.Parse(_configuration["SmtpSettings:EnableSsl"])
                 );
 
-                client.Authenticate(
+                await client.AuthenticateAsync(
                     _configuration["SmtpSettings:Username"],
                     _configuration["SmtpSettings:Password"]
                 );
 
-                client.Send(message);
-                client.Disconnect(true);
+                await client.SendAsync(message);
+                await client.DisconnectAsync(true);
             }
+            Console.WriteLine("This is the EmailService Sent");
         }
     }
 }
