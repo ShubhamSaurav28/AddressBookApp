@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Reflection;
+using System.Text;
 using BusinessLayer.Interface;
 using BusinessLayer.Service;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
@@ -7,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using Middleware;
 using RepositoryLayer.Context;
 using RepositoryLayer.Interface;
@@ -63,6 +65,53 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
         };
 
     });
+
+builder.Services.AddSwaggerGen(c =>
+{
+    c.SwaggerDoc("v1", new OpenApiInfo
+    {
+        Version = "v1",
+        Title = "AddressBook API",
+        Description = "AddressBook API Management",
+        TermsOfService = new Uri("https://www.example.com/"),
+        Contact = new OpenApiContact
+        {
+            Name = "Shubaham Saurav",
+            Email = "ssaurav28502@gmail.com     ",
+            Url = new Uri("https://www.example.com/"),
+        },
+        License = new OpenApiLicense
+        {
+            Name = "License",
+            Url = new Uri("https://www.example.com/"),
+        }
+    });
+    c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
+    {
+        Name = "Authorization",
+        Type = SecuritySchemeType.Http,
+        Scheme = "Bearer",
+        BearerFormat = "JWT",
+        In = ParameterLocation.Header,
+        Description = "JWT Authorization header using the Bearer scheme.",
+    });
+    c.AddSecurityRequirement(new OpenApiSecurityRequirement {
+                {
+                    new OpenApiSecurityScheme {
+                        Reference = new OpenApiReference {
+                            Type = ReferenceType.SecurityScheme,
+                                Id = "Bearer"
+                        }
+                    },
+                    new string[] {}
+                }
+            });
+
+    //var filename = Assembly.GetExecutingAssembly().GetName().Name + ".xml";
+    //var filepath = Path.Combine(AppContext.BaseDirectory, filename);
+    //c.IncludeXmlComments(filepath);
+});
+
 
 // 🔹 Enable CORS (Adjust as needed)
 builder.Services.AddCors(options =>

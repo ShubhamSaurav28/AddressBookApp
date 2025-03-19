@@ -17,3 +17,4 @@ C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\BusinessLayer\bin\
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\BusinessLayer\bin\Debug\net6.0\RepositoryLayer.pdb
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\BusinessLayer\obj\Debug\net6.0\BusinessLayer.csproj.AssemblyReference.cache
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\BusinessLayer\obj\Debug\net6.0\Business.EA331CBA.Up2Date
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\BusinessLayer\obj\Debug\net6.0\BusinessLayer.sourcelink.json

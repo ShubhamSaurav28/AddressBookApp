@@ -1,8 +1,19 @@
 {
   "openapi": "3.0.1",
   "info": {
-    "title": "AddressBookApp",
-    "version": "1.0"
+    "title": "AddressBook API",
+    "description": "AddressBook API Management",
+    "termsOfService": "https://www.example.com/",
+    "contact": {
+      "name": "Shubaham Saurav",
+      "url": "https://www.example.com/",
+      "email": "ssaurav28502@gmail.com     "
+    },
+    "license": {
+      "name": "License",
+      "url": "https://www.example.com/"
+    },
+    "version": "v1"
   },
   "paths": {
     "/AddressBook/api": {
@@ -24,17 +35,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddressBookCreateModel"
+                "$ref": "#/components/schemas/AddressBookCreateDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddressBookCreateModel"
+                "$ref": "#/components/schemas/AddressBookCreateDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddressBookCreateModel"
+                "$ref": "#/components/schemas/AddressBookCreateDTO"
               }
             }
           }
@@ -104,17 +115,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddressBookUpdateModel"
+                "$ref": "#/components/schemas/AddressBookUpdateDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/AddressBookUpdateModel"
+                "$ref": "#/components/schemas/AddressBookUpdateDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/AddressBookUpdateModel"
+                "$ref": "#/components/schemas/AddressBookUpdateDTO"
               }
             }
           }
@@ -156,17 +167,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegistrationModel"
+                "$ref": "#/components/schemas/RegistrationDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/RegistrationModel"
+                "$ref": "#/components/schemas/RegistrationDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/RegistrationModel"
+                "$ref": "#/components/schemas/RegistrationDTO"
               }
             }
           }
@@ -187,17 +198,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginModel"
+                "$ref": "#/components/schemas/LoginDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginModel"
+                "$ref": "#/components/schemas/LoginDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/LoginModel"
+                "$ref": "#/components/schemas/LoginDTO"
               }
             }
           }
@@ -218,17 +229,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ForgotPasswordModel"
+                "$ref": "#/components/schemas/ForgotPasswordDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ForgotPasswordModel"
+                "$ref": "#/components/schemas/ForgotPasswordDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ForgotPasswordModel"
+                "$ref": "#/components/schemas/ForgotPasswordDTO"
               }
             }
           }
@@ -249,17 +260,17 @@
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ResetPasswordModel"
+                "$ref": "#/components/schemas/ResetPasswordDTO"
               }
             },
             "text/json": {
               "schema": {
-                "$ref": "#/components/schemas/ResetPasswordModel"
+                "$ref": "#/components/schemas/ResetPasswordDTO"
               }
             },
             "application/*+json": {
               "schema": {
-                "$ref": "#/components/schemas/ResetPasswordModel"
+                "$ref": "#/components/schemas/ResetPasswordDTO"
               }
             }
           }
@@ -286,25 +297,24 @@
   },
   "components": {
     "schemas": {
-      "AddressBookCreateModel": {
+      "AddressBookCreateDTO": {
         "required": [
           "address",
           "name",
-          "phoneNumber",
-          "userId"
+          "phoneNumber"
         ],
         "type": "object",
         "properties": {
           "name": {
             "maxLength": 100,
             "minLength": 1,
+            "pattern": "^[A-Za-z\\s]+$",
             "type": "string"
           },
           "phoneNumber": {
-            "maxLength": 15,
-            "minLength": 10,
-            "type": "string",
-            "format": "tel"
+            "minLength": 1,
+            "pattern": "^\\d{10}$",
+            "type": "string"
           },
           "address": {
             "maxLength": 255,
@@ -315,10 +325,6 @@
             "type": "string",
             "format": "email",
             "nullable": true
-          },
-          "userId": {
-            "type": "integer",
-            "format": "int32"
           }
         },
         "additionalProperties": false
@@ -393,7 +399,7 @@
         },
         "additionalProperties": false
       },
-      "AddressBookUpdateModel": {
+      "AddressBookUpdateDTO": {
         "required": [
           "address",
           "name",
@@ -404,13 +410,13 @@
           "name": {
             "maxLength": 100,
             "minLength": 1,
+            "pattern": "^[A-Za-z\\s]+$",
             "type": "string"
           },
           "phoneNumber": {
-            "maxLength": 15,
-            "minLength": 10,
-            "type": "string",
-            "format": "tel"
+            "minLength": 1,
+            "pattern": "^\\d{10}$",
+            "type": "string"
           },
           "address": {
             "maxLength": 255,
@@ -425,17 +431,21 @@
         },
         "additionalProperties": false
       },
-      "ForgotPasswordModel": {
+      "ForgotPasswordDTO": {
+        "required": [
+          "email"
+        ],
         "type": "object",
         "properties": {
           "email": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           }
         },
         "additionalProperties": false
       },
-      "LoginModel": {
+      "LoginDTO": {
         "required": [
           "email",
           "password"
@@ -444,16 +454,18 @@
         "properties": {
           "email": {
             "minLength": 1,
-            "type": "string"
+            "type": "string",
+            "format": "email"
           },
           "password": {
             "minLength": 1,
+            "pattern": "^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$",
             "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "RegistrationModel": {
+      "RegistrationDTO": {
         "required": [
           "email",
           "password",
@@ -463,6 +475,7 @@
         "properties": {
           "username": {
             "minLength": 1,
+            "pattern": "^[A-Za-z0-9]{5,15}$",
             "type": "string"
           },
           "email": {
@@ -471,26 +484,34 @@
             "format": "email"
           },
           "password": {
-            "minLength": 6,
+            "minLength": 1,
+            "pattern": "^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$",
             "type": "string"
           }
         },
         "additionalProperties": false
       },
-      "ResetPasswordModel": {
+      "ResetPasswordDTO": {
+        "required": [
+          "email",
+          "newPassword",
+          "token"
+        ],
         "type": "object",
         "properties": {
           "email": {
+            "minLength": 1,
             "type": "string",
-            "nullable": true
+            "format": "email"
           },
           "token": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "type": "string"
           },
           "newPassword": {
-            "type": "string",
-            "nullable": true
+            "minLength": 1,
+            "pattern": "^(?=.*[A-Z])(?=.*\\d)(?=.*[@$!%*?&])[A-Za-z\\d@$!%*?&]{6,}$",
+            "type": "string"
           }
         },
         "additionalProperties": false
@@ -557,6 +578,19 @@
         },
         "additionalProperties": false
       }
+    },
+    "securitySchemes": {
+      "Bearer": {
+        "type": "http",
+        "description": "JWT Authorization header using the Bearer scheme.",
+        "scheme": "Bearer",
+        "bearerFormat": "JWT"
+      }
     }
-  }
+  },
+  "security": [
+    {
+      "Bearer": [ ]
+    }
+  ]
 }

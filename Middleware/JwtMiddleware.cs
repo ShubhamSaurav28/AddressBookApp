@@ -37,8 +37,6 @@ namespace Middleware
 
             var claims = new[]
             {
-                new Claim(JwtRegisteredClaimNames.Sub, user.Email),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim("userId", user.Id.ToString()),
                 new Claim("email", user.Email),
                 new Claim("Username", user.Username)
@@ -48,7 +46,7 @@ namespace Middleware
                 issuer: jwtSettings["Issuer"],
                 audience: jwtSettings["Audience"],
                 claims: claims,
-                expires: DateTime.Now.AddMinutes(10),
+                expires: DateTime.Now.AddMinutes(30),
                 signingCredentials: credentials
             );
             return new JwtSecurityTokenHandler().WriteToken(token);
@@ -87,7 +85,7 @@ namespace Middleware
             return new JwtSecurityTokenHandler().WriteToken(token);
         }
 
-        public bool ValidateResetToken(ResetPasswordModel resetPasswordDTO)
+        public bool ValidateResetToken(ResetPasswordDTO resetPasswordDTO)
         {
             var user = _userRegistrationRL.GetUserByEmail(resetPasswordDTO.Email);
 
@@ -101,45 +99,27 @@ namespace Middleware
         }
 
 
-        //public ClaimsPrincipal? VerifyToken(string token)
-        //{
-        //    if (string.IsNullOrEmpty(token))
-        //    {
-        //        return null;
-        //    }
+        public ClaimsPrincipal ValidateToken(string token)
+        {
+            var jwtSettings = _configuration.GetSection("Jwt");
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.UTF8.GetBytes(jwtSettings["Key"]);
 
-        //    var jwtSettings = _configuration.GetSection("Jwt");
-        //    if (jwtSettings == null)
-        //    {
-        //        throw new Exception("JWT settings are missing in configuration.");
-        //    }
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateIssuerSigningKey = true,
+                IssuerSigningKey = new SymmetricSecurityKey(key),
+                ValidateIssuer = true,
+                ValidIssuer = jwtSettings["Issuer"],
+                ValidateAudience = true,
+                ValidAudience = jwtSettings["Audience"],
+                ValidateLifetime = true,
+                ClockSkew = TimeSpan.Zero // No extra time buffer for expiration
+            };
 
-        //    var securityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(jwtSettings["Key"]));
-
-        //    var tokenHandler = new JwtSecurityTokenHandler();
-        //    try
-        //    {
-        //        var validationParameters = new TokenValidationParameters
-        //        {
-        //            ValidateIssuer = true,
-        //            ValidateAudience = true,
-        //            ValidateLifetime = true,
-        //            ValidateIssuerSigningKey = true,
-        //            ValidIssuer = jwtSettings["Issuer"],
-        //            ValidAudience = jwtSettings["Audience"],
-        //            IssuerSigningKey = securityKey,
-        //            ClockSkew = TimeSpan.Zero 
-        //        };
-
-        //        SecurityToken validatedToken;
-        //        var principal = tokenHandler.ValidateToken(token, validationParameters, out validatedToken);
-        //        return principal;
-        //    }
-        //    catch (Exception)
-        //    {
-        //        return null;
-        //    }
-        //}
+            SecurityToken validatedToken;
+            return tokenHandler.ValidateToken(token, validationParameters, out validatedToken);
+        }
 
     }
 }

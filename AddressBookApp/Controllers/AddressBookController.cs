@@ -1,15 +1,18 @@
 using BusinessLayer.Interface;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using ModelLayer.Models;
 using RepositoryLayer.Entity;
 using System;
 using System.Collections.Generic;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace AddressBookApp.Controllers
 {
     [ApiController]
     [Route("[controller]/api")]
+    [Authorize]
     public class AddressBookController : ControllerBase
     {
         private readonly IAddressBookBL _addressBookBL;
@@ -73,11 +76,22 @@ namespace AddressBookApp.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<ResponseModel<AddressBookEntity>>> AddAB([FromBody] AddressBookCreateModel addressBookCreateModel)
+        public async Task<ActionResult<ResponseModel<AddressBookEntity>>> AddAB([FromBody] AddressBookCreateDTO addressBookCreateModel)
         {
             try
             {
-                var addressBook = await _addressBookBL.AddADBL(addressBookCreateModel);
+                var userIdClaim = User.FindFirst("userId")?.Value;
+                if (string.IsNullOrEmpty(userIdClaim) || !int.TryParse(userIdClaim, out int userId))
+                {
+                    return Unauthorized(new ResponseModel<string>
+                    {
+                        Success = false,
+                        Message = "Unauthorized: User ID not found in token"
+                    });
+                }
+
+                var addressBook = await _addressBookBL.AddADBL(addressBookCreateModel, userId);
+
                 return CreatedAtAction(nameof(GetABById), new { id = addressBook.UserId }, new ResponseModel<AddressBookEntity>
                 {
                     Success = true,
@@ -95,8 +109,9 @@ namespace AddressBookApp.Controllers
             }
         }
 
+
         [HttpPut("{id}")]
-        public async Task<IActionResult> UpdateContact(int id, [FromBody] AddressBookUpdateModel addressBookUpdateModel)
+        public async Task<IActionResult> UpdateContact(int id, [FromBody] AddressBookUpdateDTO addressBookUpdateModel)
         {
             try
             {

@@ -48,7 +48,7 @@ namespace RepositoryLayer.Service
         }
 
         // Add a new address book entry
-        public async Task<AddressBookEntity> AddADRL(AddressBookCreateModel addressBookCreateModel)
+        public async Task<AddressBookEntity> AddADRL(AddressBookCreateDTO addressBookCreateModel,int userId)
         {
             try
             {
@@ -58,7 +58,7 @@ namespace RepositoryLayer.Service
                     Name = addressBookCreateModel.Name,
                     PhoneNumber = addressBookCreateModel.PhoneNumber,
                     Email = addressBookCreateModel.Email,
-                    UserId = addressBookCreateModel.UserId,
+                    UserId = userId,
                     Address = addressBookCreateModel.Address,
                     CreatedAt = DateTime.UtcNow
                 };
@@ -74,7 +74,7 @@ namespace RepositoryLayer.Service
         }
 
         // Update an existing address book entry
-        public async Task<bool> UpdateADRL(int id, AddressBookUpdateModel addressBookUpdateModel)
+        public async Task<bool> UpdateADRL(int id, AddressBookUpdateDTO addressBookUpdateModel)
         {
             try
             {

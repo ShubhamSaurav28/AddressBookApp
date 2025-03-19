@@ -15,3 +15,4 @@ C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\bin\Deb
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\bin\Debug\net6.0\RepositoryLayer.pdb
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\bin\Debug\net6.0\ModelLayer.pdb
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\Middleware.csproj.Up2Date
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\Middleware\obj\Debug\net6.0\Middleware.sourcelink.json

@@ -2,6 +2,7 @@
 using BusinessLayer.Service;
 using ModelLayer.DTO;
 using BusinessLayer.Interface;
+using ModelLayer.Models;
 
 namespace UserRegistration.Controllers
 {
@@ -21,7 +22,7 @@ namespace UserRegistration.Controllers
 
 
         [HttpPost("register")]
-        public IActionResult RegisterUser(RegistrationModel registrationDTO)
+        public IActionResult RegisterUser(RegistrationDTO registrationDTO)
         {
             try
             {
@@ -45,7 +46,7 @@ namespace UserRegistration.Controllers
 
 
         [HttpPost("login")]
-        public IActionResult LoginUser(LoginModel loginDTO)
+        public IActionResult LoginUser(LoginDTO loginDTO)
         {
             try
             {
@@ -69,7 +70,7 @@ namespace UserRegistration.Controllers
 
 
         [HttpPost("forgot-password")]
-        public IActionResult ForgotPassword(ForgotPasswordModel forgotPasswordDTO)
+        public IActionResult ForgotPassword(ForgotPasswordDTO forgotPasswordDTO)
         {
             try
             {
@@ -92,7 +93,7 @@ namespace UserRegistration.Controllers
 
         [HttpPost]
         [Route("reset-password")]
-        public IActionResult ResetPassword(ResetPasswordModel resetPasswordDTO)
+        public IActionResult ResetPassword(ResetPasswordDTO resetPasswordDTO)
         {
             try
             {

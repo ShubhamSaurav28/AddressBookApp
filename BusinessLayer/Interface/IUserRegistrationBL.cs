@@ -1,14 +1,15 @@
 ﻿using ModelLayer.DTO;
+using ModelLayer.Models;
 using RepositoryLayer.Entity;
 
 namespace BusinessLayer.Interface
 {
     public interface IUserRegistrationBL
     {
-        public bool RegisterUser(RegistrationModel registrationDTO);
-        public string LoginUser(LoginModel loginDTO);
-        public bool ForgotPasswordBL(ForgotPasswordModel forgotPasswordDTO);
-        public bool ResetPasswordBL(ResetPasswordModel resetPasswordDTO);
+        public bool RegisterUser(RegistrationDTO registrationDTO);
+        public string LoginUser(LoginDTO loginDTO);
+        public bool ForgotPasswordBL(ForgotPasswordDTO forgotPasswordDTO);
+        public bool ResetPasswordBL(ResetPasswordDTO resetPasswordDTO);
         public Task<IEnumerable<GetAllUserModel>> GetAllUsersBL();
 
     }

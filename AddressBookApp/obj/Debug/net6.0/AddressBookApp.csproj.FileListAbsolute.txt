@@ -99,3 +99,5 @@ C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Text.Encoding.CodePages.dll
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin\Debug\net6.0\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\bin\Debug\net6.0\FluentValidation.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\AddressBookApp\obj\Debug\net6.0\AddressBookApp.sourcelink.json

@@ -17,10 +17,10 @@ namespace RepositoryLayer.Interface
         Task<AddressBookEntity> GetABByIdRL(int id);
 
         // Add a new address book entry
-        Task<AddressBookEntity> AddADRL(AddressBookCreateModel addressBookCreateModel);
+        Task<AddressBookEntity> AddADRL(AddressBookCreateDTO addressBookCreateModel, int userId);
 
         // Update an existing address book entry
-        Task<bool> UpdateADRL(int id, AddressBookUpdateModel addressBookUpdateModel);
+        Task<bool> UpdateADRL(int id, AddressBookUpdateDTO addressBookUpdateModel);
 
         // Delete an address book entry by ID
         Task<bool> DeleteADRL(int id);

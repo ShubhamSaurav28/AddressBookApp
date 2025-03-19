@@ -4,9 +4,11 @@ using System.Text;
 using BusinessLayer.Interface;
 using Middleware;
 using ModelLayer.DTO;
+using ModelLayer.Models;
 using RepositoryLayer.Entity;
 using RepositoryLayer.Interface;
 using RepositoryLayer.Service;
+using StackExchange.Redis;
 
 namespace BusinessLayer.Service
 {
@@ -27,27 +29,29 @@ namespace BusinessLayer.Service
             _emailServiceBL = emailServiceBL;
         }
 
-        public bool RegisterUser(RegistrationModel registrationDTO)
+        public bool RegisterUser(RegistrationDTO registrationDTO)
         {
             string hashedPassword = HashPassword(registrationDTO.Password);
             registrationDTO.Password = hashedPassword;
-
             return _userRegistrationRL.RegisterUser(registrationDTO);
         }
 
-        public string LoginUser(LoginModel loginDTO)
+        public string LoginUser(LoginDTO loginDTO)
         {
+
             var user = _userRegistrationRL.LoginUser(loginDTO);
 
             if (user != null && VerifyPassword(loginDTO.Password, user.PasswordHash))
             {
                 var token = _jwtMiddleware.GenerateToken(user);
-                return token.ToString();
+
+                return token;
             }
             return null;
         }
 
-        public bool ForgotPasswordBL(ForgotPasswordModel forgotPasswordDTO)
+
+        public bool ForgotPasswordBL(ForgotPasswordDTO forgotPasswordDTO)
         {
             var user = _userRegistrationRL.GetUserByEmail(forgotPasswordDTO.Email);
             if (user == null)
@@ -71,7 +75,7 @@ namespace BusinessLayer.Service
             return true;
         }
 
-        public bool ResetPasswordBL(ResetPasswordModel resetPasswordDTO)
+        public bool ResetPasswordBL(ResetPasswordDTO resetPasswordDTO)
         {
             var result = _jwtMiddleware.ValidateResetToken(resetPasswordDTO);
 

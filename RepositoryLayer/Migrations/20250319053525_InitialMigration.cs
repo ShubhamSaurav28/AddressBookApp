@@ -15,7 +15,6 @@ namespace RepositoryLayer.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<int>(type: "int", nullable: false),
                     Username = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     Email = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
                     PasswordHash = table.Column<string>(type: "nvarchar(255)", maxLength: 255, nullable: false),
@@ -34,7 +33,7 @@ namespace RepositoryLayer.Migrations
                 name: "AddressBooks",
                 columns: table => new
                 {
-                    AddressBookId = table.Column<int>(type: "int", nullable: false)
+                    Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Name = table.Column<string>(type: "nvarchar(100)", maxLength: 100, nullable: false),
                     PhoneNumber = table.Column<string>(type: "nvarchar(15)", maxLength: 15, nullable: false),
@@ -46,7 +45,7 @@ namespace RepositoryLayer.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_AddressBooks", x => x.AddressBookId);
+                    table.PrimaryKey("PK_AddressBooks", x => x.Id);
                     table.ForeignKey(
                         name: "FK_AddressBooks_Users_UserId",
                         column: x => x.UserId,

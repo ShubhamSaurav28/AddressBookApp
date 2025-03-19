@@ -19,7 +19,7 @@
     "Parameters": [
       {
         "Name": "addressBookCreateModel",
-        "Type": "ModelLayer.Models.AddressBookCreateModel",
+        "Type": "ModelLayer.Models.AddressBookCreateDTO",
         "IsRequired": true
       }
     ],
@@ -66,7 +66,7 @@
       },
       {
         "Name": "addressBookUpdateModel",
-        "Type": "ModelLayer.Models.AddressBookUpdateModel",
+        "Type": "ModelLayer.Models.AddressBookUpdateDTO",
         "IsRequired": true
       }
     ],
@@ -98,7 +98,7 @@
     "Parameters": [
       {
         "Name": "forgotPasswordDTO",
-        "Type": "ModelLayer.DTO.ForgotPasswordModel",
+        "Type": "ModelLayer.DTO.ForgotPasswordDTO",
         "IsRequired": true
       }
     ],
@@ -124,7 +124,7 @@
     "Parameters": [
       {
         "Name": "loginDTO",
-        "Type": "ModelLayer.DTO.LoginModel",
+        "Type": "ModelLayer.DTO.LoginDTO",
         "IsRequired": true
       }
     ],
@@ -140,7 +140,7 @@
     "Parameters": [
       {
         "Name": "registrationDTO",
-        "Type": "ModelLayer.DTO.RegistrationModel",
+        "Type": "ModelLayer.DTO.RegistrationDTO",
         "IsRequired": true
       }
     ],
@@ -156,7 +156,7 @@
     "Parameters": [
       {
         "Name": "resetPasswordDTO",
-        "Type": "ModelLayer.DTO.ResetPasswordModel",
+        "Type": "ModelLayer.DTO.ResetPasswordDTO",
         "IsRequired": true
       }
     ],

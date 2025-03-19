@@ -5,10 +5,10 @@ namespace RepositoryLayer.Interface
 {
     public interface IUserRegistrationRL
     {
-        public bool RegisterUser(RegistrationModel registrationDTO);
-        public UserEntity LoginUser(LoginModel loginDTO);
+        public bool RegisterUser(RegistrationDTO registrationDTO);
+        public UserEntity LoginUser(LoginDTO loginDTO);
         public UserEntity GetUserByEmail(string email);
-        public bool UpdateUser(ResetPasswordModel resetPasswordDTO);
+        public bool UpdateUser(ResetPasswordDTO resetPasswordDTO);
         public bool SaveResetToken(string email, string token);
         public Task<IEnumerable<UserEntity>> GetAllUserRL();
 

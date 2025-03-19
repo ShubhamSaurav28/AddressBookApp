@@ -41,11 +41,11 @@ namespace BusinessLayer.Service
             }
         }
 
-        public async Task<AddressBookEntity> AddADBL(AddressBookCreateModel addressBookCreateModel)
+        public async Task<AddressBookEntity> AddADBL(AddressBookCreateDTO addressBookCreateModel,int userId)
         {
             try
             {
-                return await _addressBookRL.AddADRL(addressBookCreateModel);
+                return await _addressBookRL.AddADRL(addressBookCreateModel,userId);
             }
             catch (Exception ex)
             {
@@ -53,7 +53,7 @@ namespace BusinessLayer.Service
             }
         }
 
-        public async Task<bool> UpdateADBL(int id, AddressBookUpdateModel addressBookUpdateModel)
+        public async Task<bool> UpdateADBL(int id, AddressBookUpdateDTO addressBookUpdateModel)
         {
             try
             {

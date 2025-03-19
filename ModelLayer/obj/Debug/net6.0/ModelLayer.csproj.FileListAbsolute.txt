@@ -9,3 +9,5 @@ C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\ModelLayer\obj\Deb
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\ModelLayer\obj\Debug\net6.0\refint\ModelLayer.dll
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\ModelLayer\obj\Debug\net6.0\ModelLayer.pdb
 C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\ModelLayer\obj\Debug\net6.0\ref\ModelLayer.dll
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\ModelLayer\obj\Debug\net6.0\ModelLayer.csproj.AssemblyReference.cache
+C:\Users\Lenovo\Desktop\MY\BridgeLabs_Training\AddressBookApp\ModelLayer\obj\Debug\net6.0\ModelLayer.sourcelink.json

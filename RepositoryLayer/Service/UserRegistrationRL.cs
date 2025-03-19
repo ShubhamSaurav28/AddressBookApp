@@ -8,6 +8,8 @@ using Microsoft.Extensions.Configuration;
 using StackExchange.Redis;
 using Microsoft.Data.SqlClient;
 using Dapper;
+using System.Text.Json;
+using System.Threading.Tasks;
 
 namespace RepositoryLayer.Service
 {
@@ -16,16 +18,17 @@ namespace RepositoryLayer.Service
         private readonly ApplicationDbContext _context;
         private readonly IConfiguration _configuration;
         private readonly string _connectionString;
+        private readonly IDatabase _redisDb;
 
-
-        public UserRegistrationRL(ApplicationDbContext context, IConfiguration configuration)
+        public UserRegistrationRL(ApplicationDbContext context, IConfiguration configuration, IConnectionMultiplexer redis)
         {
             _context = context;
             _configuration = configuration;
             _connectionString = configuration.GetConnectionString("DefaultConnection");
+            _redisDb = redis.GetDatabase(); // Get Redis database instance
         }
 
-        public bool RegisterUser(RegistrationModel registrationDTO)
+        public bool RegisterUser(RegistrationDTO registrationDTO)
         {
             if (_context.Users.Any(u => u.Email == registrationDTO.Email))
                 return false;
@@ -42,7 +45,7 @@ namespace RepositoryLayer.Service
             return true;
         }
 
-        public UserEntity LoginUser(LoginModel loginDTO)
+        public UserEntity LoginUser(LoginDTO loginDTO)
         {
             var user = _context.Users.FirstOrDefault(u => u.Email == loginDTO.Email);
             if (user == null)
@@ -58,7 +61,7 @@ namespace RepositoryLayer.Service
 
             return user;
         }
-        public bool UpdateUser(ResetPasswordModel resetPasswordDTO)
+        public bool UpdateUser(ResetPasswordDTO resetPasswordDTO)
         {
             try
             {
@@ -117,6 +120,5 @@ namespace RepositoryLayer.Service
                 return null;
             }
         }
-
     }
 }
