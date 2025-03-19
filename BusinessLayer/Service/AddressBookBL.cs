@@ -21,6 +21,7 @@ namespace BusinessLayer.Service
         {
             try
             {
+                Console.WriteLine("this is bl");
                 return await _addressBookRL.GetAllABsRL();
             }
             catch (Exception ex)

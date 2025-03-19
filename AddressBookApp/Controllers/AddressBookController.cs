@@ -12,7 +12,7 @@ namespace AddressBookApp.Controllers
 {
     [ApiController]
     [Route("[controller]/api")]
-    [Authorize]
+    //[Authorize]
     public class AddressBookController : ControllerBase
     {
         private readonly IAddressBookBL _addressBookBL;
@@ -27,7 +27,9 @@ namespace AddressBookApp.Controllers
         {
             try
             {
+                Console.WriteLine("this is con1");
                 var addressBooks = await _addressBookBL.GetAllABsBL();
+                Console.WriteLine("this is con2");
                 return Ok(new ResponseModel<IEnumerable<AddressBookEntity>>
                 {
                     Success = true,
